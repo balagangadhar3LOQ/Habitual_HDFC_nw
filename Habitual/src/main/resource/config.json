@@ -64,6 +64,7 @@
   "valid_object": {
     "input_file_type": ["csv", "parquet"],
     "execution_type": ["full","Phase1","Phase2"],
-    "model_mode": ["train_test","scoring"]
+    "model_mode": ["train_test","scoring"],
+    "valid_fileInfo": ["transactionFile","userAttributesFile","eventAttributesFile","attributesFile","userIdMapFile"]
   }
 }

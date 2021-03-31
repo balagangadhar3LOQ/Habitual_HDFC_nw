@@ -1,6 +1,6 @@
 import json
 from os import path
-
+from src.main.python.triloq.habitual.mb.modes.habitualAI.stages import DataGen
 
 def validate_config(config):
     valid_objects = config['valid_object']
@@ -40,6 +40,10 @@ if __name__ == '__main__':
     if not validate_config(config):
         import sys
         sys.exit()
+
+    if config['execution_type'] == "full":
+        print("Processing the execution type {0}".format(config['execution_type']))
+
 
 
 
