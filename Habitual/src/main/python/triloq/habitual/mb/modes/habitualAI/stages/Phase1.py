@@ -24,8 +24,13 @@ class Phase1:
         return df
 
     def execute_step1(self, df: pd.DataFrame, config: dict):
+        #get preprocessed data from config file output location
+
         df = df.apply(self.ri_cat)
         df = df.apply(self.si_cat)
+        df = self.ri_cat(df)
+        df = self.si_cat(df)
+        return df
 
 
 

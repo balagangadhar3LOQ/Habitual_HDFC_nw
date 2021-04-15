@@ -1,6 +1,7 @@
 import json
 from os import path
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages import DataGen
+from src.main.python.triloq.habitual.mb.modes.habitualAI.stages import Full_Run
+from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.Phase1 import Phase1
 
 def validate_config(config):
     valid_objects = config['valid_object']
@@ -43,6 +44,12 @@ if __name__ == '__main__':
 
     if config['execution_type'] == "full":
         print("Processing the execution type {0}".format(config['execution_type']))
+        f = Full_Run.FullRun()
+
+        f.execute(config)
+    elif config['execution_type'].lower() == "phase1":
+        f = Phase1()
+        f. execute_step1(df)
 
 
 

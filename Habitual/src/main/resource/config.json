@@ -5,11 +5,11 @@
   "source_delimiter": ",",
   "execution_type": "full",
   "model_mode": "train_test",
-  "file_output_path": "Habitual/src/main/",
+  "file_output_path": "/home/bala/Downloads/Habitual/src/main/",
 
   "dateWindow" :   {
-    "windowStart":"2018-03-01",
-    "windowEnd":"2019-06-01",
+    "windowStart":"2020-01-01",
+    "windowEnd":"2020-12-31",
 
     "training_months": 6,
     "testing_months": 1,
@@ -36,28 +36,28 @@
 
   "fileInfo":  {
     "transactionFile" :{
-      "name" : "/octopus_sample_data_10k/transactions/*.parquet",
+      "name" : "/home/bala/Downloads/1LakhUsersTxns/",
       "txn_mapping": {
 
-        "user_id": "user_id",
-        "txn_dt": "txn_dt",
-        "txn_amt": "txn_amt",
-        "txn_category": "txn_category",
-        "txn_subcategory": "txn_subcategory"
+        "user_id": "custbkey",
+        "txn_dt": "postdt",
+        "txn_amt": "trnamt1",
+        "txn_category": "trntpbkey",
+        "txn_subcategory": "narr1"
 
       }
     },
     "userAttributesFile":{
-      "name" : "/octopus_sample_data_10k/user_attributes_latest/*.parquet"
+      "name" : "/home/bala/Downloads/1LakhUsersTxns/"
     },
     "eventAttributesFile":{
-      "name": "/octopus_sample_data_100k/event_attributes_l2_latest/*.parquet"
+      "name": "/home/bala/Downloads/1LakhUsersTxns/"
     },
     "attributesFile":{
-      "name": "/Octopus_layout/Retail_Banking_Daily_Logs/user_attributes/*.parquet"
+      "name": "/home/bala/Downloads/1LakhUsersTxns/"
     },
     "userIdMapFile":{
-      "name" : "/octopus_layout-II/user_map"
+      "name" : "/home/bala/Downloads/1LakhUsersTxns/"
     }
   },
 
