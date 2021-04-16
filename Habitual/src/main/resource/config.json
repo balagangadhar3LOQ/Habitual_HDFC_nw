@@ -8,6 +8,7 @@
   "file_output_path": "/home/bala/Downloads/Habitual/src/main/",
   "active_categories": [],
   "category_mapping_file" : "",
+  "category_map_col": "category",
   "dateWindow" :   {
     "windowStart":"2020-01-01",
     "windowEnd":"2020-12-31",

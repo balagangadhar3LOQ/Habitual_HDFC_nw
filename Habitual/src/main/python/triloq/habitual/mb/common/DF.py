@@ -54,9 +54,13 @@ class DF:
 
     def cat_mapping(self, df:pd.DataFrame, config):
         cat_mapping_file = config['category_mapping_file']
+        cat_map_col = config['category_map_col']
         if cat_mapping_file[-5:].lower() != ".json":
             return "NOT A JSON FILE INPUT VALID MAPPING FILE"
         map_file = pd.read_json(cat_mapping_file)
+        df = df.merge(map_file[['event_id', cat_map_col]], on='event_id', how='left')
+        df.drop(['event_id'], inplace=True)
+        df.rename({cat_map_col: 'event_id'}, inplace=True)
         return df
 
     def get_active_cat(self, df: pd.DataFrame, config):
