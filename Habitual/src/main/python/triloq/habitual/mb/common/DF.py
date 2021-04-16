@@ -14,6 +14,7 @@ class DF:
         return df
 
     def read_data(self, file_cat: str, config):
+        valid_filetypes = ["csv", "parquet"]
         print("[DF.py]  Running Read DF")
         txn = None
         usr = None
@@ -21,7 +22,7 @@ class DF:
         read_arr = []
         start_dt, end_dt = config["dateWindow"]['windowStart'], config["dateWindow"]['windowEnd']
         file_type = config['input_file_type']
-        if file_type not in config["valid_object"]['input_file_type']:
+        if file_type not in valid_filetypes:
             print(
                 "File Type Error check file type {0}, {1}".format(file_type, config["valid_object"]['valid_fileInfo']))
             sys.exit()
@@ -51,7 +52,18 @@ class DF:
         df = df[df['txn_dt'] >= start_dt & df['txn_dt'] <= end_dt]
         return df
 
-    
+    def cat_mapping(self, df:pd.DataFrame, config):
+        cat_mapping_file = config['category_mapping_file']
+        if cat_mapping_file[-5:].lower() != ".json":
+            return "NOT A JSON FILE INPUT VALID MAPPING FILE"
+        map_file = pd.read_json(cat_mapping_file)
+        return df
+
+    def get_active_cat(self, df: pd.DataFrame, config):
+        active_cat = config['active_categories']
+        df = df[df['category'].isin(active_cat)]
+        return df
+
     def clean_df(self, df):
         pass
 
