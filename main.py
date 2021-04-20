@@ -1,5 +1,8 @@
 import json
 from os import path
+
+import pandas as pd
+
 from src.main.python.triloq.habitual.mb.modes.habitualAI.stages import Full_Run
 from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.Phase1 import Phase1
 
@@ -45,9 +48,9 @@ if __name__ == '__main__':
     if config['execution_type'] == "full":
         print("Processing the execution type {0}".format(config['execution_type']))
         f = Full_Run.FullRun()
-
         f.execute(config)
     elif config['execution_type'].lower() == "phase1":
+        df = pd.read_parquet() #receive data from the output path
         f = Phase1()
         f. execute_step1(df)
 

@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 class Phase1:
@@ -6,15 +7,17 @@ class Phase1:
         pass
 
     def ri_cat(self, df: pd.DataFrame):
-        return self
+        df['ri'] = np.random.choice([0, 1], df.shape[0])
+        return df
 
     def si_cat(self, df: pd.DataFrame):
-        # df['si'] = logic
+        df['si'] = np.random.choice([0, 1], df.shape[0])
         return df
 
     def ri_si(self, df):
         df = df[df['ri'] == 1 & df['si'] == 1]
         return df
+
     def nonri(self, df):
         df = df[df['ri'] == 0]
         return df
@@ -24,13 +27,10 @@ class Phase1:
         return df
 
     def execute_step1(self, df: pd.DataFrame, config: dict):
-        #get preprocessed data from config file output location
+        # get preprocessed data from config file output location
 
         df = df.apply(self.ri_cat)
         df = df.apply(self.si_cat)
         df = self.ri_cat(df)
         df = self.si_cat(df)
         return df
-
-
-

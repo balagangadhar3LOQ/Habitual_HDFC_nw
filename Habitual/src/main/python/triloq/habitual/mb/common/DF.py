@@ -48,8 +48,9 @@ class DF:
         df['txn_dt'] = df['txn_dt'].dt.strftime('%Y-%m-%d')
         print(df['txn_dt'].dtypes, type(start_dt))
         print(df.txn_dt.head())
-        df['category'] = df['category'].str[-3:]
+        # df['category'] = df['category'].str[-3:] for testing
         df = df[df['txn_dt'] >= start_dt & df['txn_dt'] <= end_dt]
+        df = df.dropna(subset=['category','user_id', 'txn_dt'], axis=0)
         return df
 
     def cat_mapping(self, df:pd.DataFrame, config):
@@ -71,5 +72,4 @@ class DF:
     def clean_df(self, df):
         pass
 
-    def write_csv(self, config):
-        pass
+
