@@ -9,8 +9,10 @@ class DF:
         pass
 
     def rename_df(self, df: pd.DataFrame, rename_dict: dict):
+        print("renaming the dataset")
         nw_rename = dict([(value, key) for key, value in rename_dict.items()])
         df.rename(columns=nw_rename, inplace=True)
+        df = df[list(nw_rename.values())]
         return df
 
     def read_data(self, file_cat: str, config):
@@ -42,18 +44,26 @@ class DF:
         rename_columns_dict = config['fileInfo']['transactionFile']['txn_mapping']
 
         df = self.rename_df(df, rename_columns_dict)
+
         df['txn_dt'] = pd.to_datetime(df['txn_dt'], format="%m/%d/%Y %H:%M:%S")
         # start_dt = datetime.datetime.strftime(start_dt, '%Y-%m-%d')
         # end_dt = datetime.datetime.strftime(end_dt, '%Y-%m-%d')
         df['txn_dt'] = df['txn_dt'].dt.strftime('%Y-%m-%d')
-        print(df['txn_dt'].dtypes, type(start_dt))
-        print(df.txn_dt.head())
+        # print(df.txn_dt.head(2))
         # df['category'] = df['category'].str[-3:] for testing
-        df = df[df['txn_dt'] >= start_dt & df['txn_dt'] <= end_dt]
-        df = df.dropna(subset=['category','user_id', 'txn_dt'], axis=0)
+        # start_dt = pd.Timestamp(start_dt)
+        # end_dt = pd.Timestamp(end_dt)
+        import time
+        # time.sleep(10)
+
+
+        df = df[df['txn_dt'] >= start_dt]
+        df = df[df['txn_dt'] <= end_dt]
+
+        df = df.dropna(subset=['txn_category', 'user_id', 'txn_dt'], axis=0)
         return df
 
-    def cat_mapping(self, df:pd.DataFrame, config):
+    def cat_mapping(self, df: pd.DataFrame, config):
         cat_mapping_file = config['category_mapping_file']
         cat_map_col = config['category_map_col']
         if cat_mapping_file[-5:].lower() != ".json":
@@ -66,10 +76,8 @@ class DF:
 
     def get_active_cat(self, df: pd.DataFrame, config):
         active_cat = config['active_categories']
-        df = df[df['category'].isin(active_cat)]
+        df = df[df['event_id'].isin(active_cat)]
         return df
 
     def clean_df(self, df):
         pass
-
-

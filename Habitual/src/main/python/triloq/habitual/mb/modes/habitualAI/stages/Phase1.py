@@ -26,11 +26,9 @@ class Phase1:
         df = df[df['ri'] == 1 & df['si'] == 0]
         return df
 
-    def execute_step1(self, df: pd.DataFrame, config: dict):
+    def execute_step1(self, df: pd.DataFrame):
         # get preprocessed data from config file output location
-
-        df = df.apply(self.ri_cat)
-        df = df.apply(self.si_cat)
+        print("Running RI SI Categorization")
         df = self.ri_cat(df)
         df = self.si_cat(df)
         return df

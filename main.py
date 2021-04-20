@@ -50,7 +50,7 @@ if __name__ == '__main__':
         f = Full_Run.FullRun()
         f.execute(config)
     elif config['execution_type'].lower() == "phase1":
-        df = pd.read_parquet() #receive data from the output path
+        df = pd.read_parquet("output/phase1/dataset") #receive data from the output path
         f = Phase1()
         f. execute_step1(df)
 

@@ -7,14 +7,16 @@
   "model_mode": "train_test",
   "file_output_path": {
 
-    "phase1_output": "output/phase1/",
+    "phase1_output": "output/phase1/phase1.gzip",
     "phase1_output_format": "parquet",
-    "phase2_output": "output/phase2/",
+    "phase2_output": "output/phase2/phase2.gzip",
     "phase2_output_format": "parquet",
-    "data_gen_output": "output/data_gen/",
+    "data_gen_output": "output/data_gen/datagen.gzip",
     "data_gen_output_format": "parquet",
-    "stage3_output" : "output/stage3/",
-    "stage3_output_format": "parquet"
+    "stage3_output" : "output/stage3/stage3.gzip",
+    "stage3_output_format": "parquet",
+    "dataframe_output": "output/feature_dataset/dataframe.csv",
+    "dataframe_output_format": "csv"
   },
   "active_categories": [],
   "category_mapping_file" : "",
@@ -48,7 +50,7 @@
 
   "fileInfo":  {
     "transactionFile" :{
-      "name" : "/home/bala/Downloads/1LakhUsersTxns/",
+      "name" : "/home/bala/Desktop/checkfolder/",
       "txn_mapping": {
 
         "user_id": "custbkey",
