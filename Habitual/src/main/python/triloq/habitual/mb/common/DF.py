@@ -15,6 +15,8 @@ class DF:
         df = df[list(nw_rename.values())]
         return df
 
+
+
     def read_data(self, file_cat: str, config):
         valid_filetypes = ["csv", "parquet"]
         print("[DF.py]  Running Read DF")

@@ -28,12 +28,11 @@ class FullRun:
         print("Saved phase1 data")
 
         time.sleep(20)
-        df_list, y_new = stage3.frame(df, config)
-        for i in zip(df_list, y_new):
-            tempdf = pd.merge(i[0],i[1], on='user_id', how='left')
+        tempdf_final = stage3.frame(df, config)
+        for i in tempdf_final:
             stage3_path = config['file_output_path']['stage3_output']
             stage3_format = config['file_output_path']['stage3_output_format']
             print("<----------df---------->\n", df.head(4))
             # self.write_data(tempdf, stage3_path, stage3_format)
             print("saved stage3 data")
-        return df_list
+        return True

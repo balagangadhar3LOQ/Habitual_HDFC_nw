@@ -16,9 +16,12 @@
     "stage3_output" : "output/stage3/stage3.gzip",
     "stage3_output_format": "parquet",
     "dataframe_output": "output/feature_dataset/dataframe.csv",
-    "dataframe_output_format": "csv"
+    "dataframe_output_format": "csv",
+    "y_lable_out_put": "output/feature_dataset/dataframe_y.csv"
+
   },
   "active_categories": [],
+  "target_billpay_category": [],
   "category_mapping_file" : "",
   "category_map_col": "category",
   "dateWindow" :   {
