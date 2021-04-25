@@ -28,7 +28,7 @@ class FullRun:
         print("Saved phase1 data")
 
         time.sleep(20)
-        tempdf_final = stage3.frame(df, config)
+        tempdf_final = stage3.model_data_prep(df, config)
         for i in tempdf_final:
             stage3_path = config['file_output_path']['stage3_output']
             stage3_format = config['file_output_path']['stage3_output_format']

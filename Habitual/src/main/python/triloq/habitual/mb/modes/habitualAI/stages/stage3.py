@@ -120,6 +120,7 @@ def model_data_prep(df: pd.DataFrame, config):
         return list(templist)
 
     for i in range(len(tempdf_list)):
+        print("[stage3.py] creating attributes...")
         ydf_list[i].rename(columns={"cat_n_unique": "y_cat_n_unique", "cat_split": "y_cat_split"}, inplace=True)
         tempdf = pd.merge(tempdf_list[i], ydf_list[i][["user_id", 'y_cat_n_unique', 'y_cat_split']], on='user_id',
                           how='left')
