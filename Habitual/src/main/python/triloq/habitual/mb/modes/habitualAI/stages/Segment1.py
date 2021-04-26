@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 
+from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.log_writer import write_log
+
 
 class Phase1:
     def __init__(self):
@@ -28,7 +30,7 @@ class Phase1:
 
     def execute_step1(self, df: pd.DataFrame):
         # get preprocessed data from config file output location
-        print("Running RI SI Categorization")
+        write_log("Running RI SI Categorization")
         df = self.ri_cat(df)
         df = self.si_cat(df)
         return df

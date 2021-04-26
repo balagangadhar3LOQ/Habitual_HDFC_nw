@@ -4,7 +4,9 @@ from os import path
 import pandas as pd
 
 from src.main.python.triloq.habitual.mb.modes.habitualAI.stages import Full_Run
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.Phase1 import Phase1
+from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.Segment1 import Phase1
+from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.log_writer import write_log
+
 
 def validate_config(config):
     valid_objects = config['valid_object']
@@ -24,11 +26,11 @@ def validate_config(config):
         return False
 
     try:
-        print("checking availability of required files")
+        write_log("checking availability of required files")
         for i in config['fileInfo'].keys():
             if not path.exists(config['fileInfo'][i]['name']):
-                print("Not Existing file {0}".format(config['fileInfo'][i]['name']))
-                # raise Exception("File not found")
+                write_log("Not Existing file {0}".format(config['fileInfo'][i]['name']))
+                raise Exception("File not found")
             else:
                 pass
     except Exception as e:
@@ -46,7 +48,7 @@ if __name__ == '__main__':
         sys.exit()
 
     if config['execution_type'] == "full":
-        print("Processing the execution type {0}".format(config['execution_type']))
+        write_log("Processing the execution type {0}".format(config['execution_type']))
         f = Full_Run.FullRun()
         f.execute(config)
     elif config['execution_type'].lower() == "phase1":

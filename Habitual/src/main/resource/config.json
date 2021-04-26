@@ -6,7 +6,7 @@
   "execution_type": "full",
   "model_mode": "train_test",
   "file_output_path": {
-
+    "log_file": "output/log/logfile.log",
     "phase1_output": "output/phase1/phase1.gzip",
     "phase1_output_format": "parquet",
     "phase2_output": "output/phase2/phase2.gzip",

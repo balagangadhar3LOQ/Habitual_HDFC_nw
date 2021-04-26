@@ -2,6 +2,7 @@ import sys
 import pandas as pd
 from pathlib import Path
 import datetime
+from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.log_writer import write_log
 
 
 class DF:
@@ -9,17 +10,15 @@ class DF:
         pass
 
     def rename_df(self, df: pd.DataFrame, rename_dict: dict):
-        print("renaming the dataset")
+        write_log("renaming the dataset")
         nw_rename = dict([(value, key) for key, value in rename_dict.items()])
         df.rename(columns=nw_rename, inplace=True)
         df = df[list(nw_rename.values())]
         return df
 
-
-
     def read_data(self, file_cat: str, config):
         valid_filetypes = ["csv", "parquet"]
-        print("[DF.py]  Running Read DF")
+        write_log("[DF.py]  Running Read DF")
         txn = None
         usr = None
         event = None
@@ -27,7 +26,8 @@ class DF:
         start_dt, end_dt = config["dateWindow"]['windowStart'], config["dateWindow"]['windowEnd']
         file_type = config['input_file_type']
         if file_type not in valid_filetypes:
-            print(
+            print("File Type Error Check Log")
+            write_log(
                 "File Type Error check file type {0}, {1}".format(file_type, config["valid_object"]['valid_fileInfo']))
             sys.exit()
 
@@ -43,21 +43,13 @@ class DF:
                 df = pd.concat(pd.read_parquet(pf, engine="fastparquet") for pf in data_dir.glob('*.parquet'))
             except Exception as e:
                 print("[DF.py]  Exception in reading Parquet files please check")
+                write_log("[DF.py]  Exception in reading Parquet files please check")
         rename_columns_dict = config['fileInfo']['transactionFile']['txn_mapping']
 
         df = self.rename_df(df, rename_columns_dict)
 
         df['txn_dt'] = pd.to_datetime(df['txn_dt'], format="%m/%d/%Y %H:%M:%S")
-        # start_dt = datetime.datetime.strftime(start_dt, '%Y-%m-%d')
-        # end_dt = datetime.datetime.strftime(end_dt, '%Y-%m-%d')
         df['txn_dt'] = df['txn_dt'].dt.strftime('%Y-%m-%d')
-        # print(df.txn_dt.head(2))
-        # df['category'] = df['category'].str[-3:] for testing
-        # start_dt = pd.Timestamp(start_dt)
-        # end_dt = pd.Timestamp(end_dt)
-        import time
-        # time.sleep(10)
-
 
         df = df[df['txn_dt'] >= start_dt]
         df = df[df['txn_dt'] <= end_dt]
