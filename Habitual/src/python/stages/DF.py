@@ -1,8 +1,7 @@
 import sys
 import pandas as pd
 from pathlib import Path
-import datetime
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.log_writer import write_log
+from src.python.stages.log_writer import write_log
 
 
 class DF:
@@ -26,7 +25,7 @@ class DF:
         start_dt, end_dt = config["dateWindow"]['windowStart'], config["dateWindow"]['windowEnd']
         file_type = config['input_file_type']
         if file_type not in valid_filetypes:
-            print("File Type Error Check Log")
+            write_log("File Type Error Check Log")
             write_log(
                 "File Type Error check file type {0}, {1}".format(file_type, config["valid_object"]['valid_fileInfo']))
             sys.exit()

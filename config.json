@@ -25,10 +25,10 @@
   "category_mapping_file" : "",
   "category_map_col": "category",
   "dateWindow" :   {
-    "windowStart":"2020-01-01",
-    "windowEnd":"2020-12-31",
+    "windowStart":"2020-10-01",
+    "windowEnd":"2020-12-30",
 
-    "training_months": 6,
+    "training_months": 2,
     "testing_months": 1,
 
     "trainStart" : "2018-03-01",
@@ -53,7 +53,7 @@
 
   "fileInfo":  {
     "transactionFile" :{
-      "name" : "/home/bala/Desktop/checkfolder/",
+      "name" : "/home/bala/Desktop/checkfolder",
       "txn_mapping": {
 
         "user_id": "custbkey",

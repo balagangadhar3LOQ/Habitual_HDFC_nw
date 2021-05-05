@@ -3,9 +3,9 @@ from os import path
 
 import pandas as pd
 
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages import Full_Run
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.Segment1 import Phase1
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.log_writer import write_log
+from src.python.stages import Full_Run
+from src.python.stages.Segment1 import Phase1
+from src.python.stages.log_writer import write_log
 
 
 def validate_config(config):
@@ -34,14 +34,19 @@ def validate_config(config):
             else:
                 pass
     except Exception as e:
-        print(e)
+        write_log(e)
         return False
     return True
 
 
 if __name__ == '__main__':
-    with open("Habitual/src/main/resource/config.json") as r:
+    with open("config.json") as r:
         config = json.load(r)
+
+    # creating an empty log file
+    with open("output/log/logfile.log", "r+") as file:
+        file.truncate(0)
+    file.close()
 
     if not validate_config(config):
         import sys

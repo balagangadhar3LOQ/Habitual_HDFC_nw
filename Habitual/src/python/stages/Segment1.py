@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.log_writer import write_log
-
+from src.python.stages.log_writer import write_log
+import warnings
+warnings.filterwarnings(action="ignore")
 
 class Phase1:
     def __init__(self):

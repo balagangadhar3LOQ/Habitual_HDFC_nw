@@ -1,6 +1,7 @@
-from src.main.python.triloq.habitual.mb.common.DF import DF
-from src.main.python.triloq.habitual.mb.modes.habitualAI.stages.log_writer import write_log
-
+from src.python.stages.DF import DF
+from src.python.stages.log_writer import write_log
+import warnings
+warnings.filterwarnings(action="ignore")
 
 class DataGen():
     def __init__(self):
@@ -10,6 +11,7 @@ class DataGen():
         write_log("Reading Transaction File")
         d = DF()
         df = d.read_data("transactionfile", config)
+        print(df.txn_dt.min(), df.txn_dt.max())
         return df
 
 
